@@ -38,4 +38,5 @@ class BoardTest extends TestCase
         $response->assertSee($first->title)->assertSee($first->content);
         $response->assertSee($second->title)->assertSee($second->content);
     }
+
 }
