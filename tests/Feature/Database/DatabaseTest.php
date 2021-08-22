@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class DatabaseTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -40,9 +40,33 @@ class DatabaseTest extends TestCase
 
     public function testRegisterDatabase()
     {
+        $book = new Book();
+        $book->title = 'hoge';
+        $book->author = 'tarou';
+        $book->save();
+
         $book = [
             'title' => 'hoge'
         ];
         $this->assertDatabaseHas('books', $book);
+    }
+
+    public function testFactoryDatabase()
+    {
+        $book = [
+            'title' => 'hogehoge',
+            'author' => 'yamadahanako'
+        ];
+
+        Book::factory()->create($book);
+
+        $this->assertDatabaseHas('books', $book);
+    }
+
+    public function testFactoryCreateThreeDatabase()
+    {
+        $books = Book::factory()->count(3)->create();
+        $bookCount = count($books) == 3;
+        $this->assertTrue($bookCount);
     }
 }
