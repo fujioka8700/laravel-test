@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\TimeCounterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ Route::get('/', function () {
 });
 
 Route::get('/boards', [BoardController::class, 'getIndex']);
+
+Route::get('/time-counter', [TimeCounterController::class, 'getIndex']);
