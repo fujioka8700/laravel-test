@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/stopwatch.js', 'public/js')
     .browserSync({
         proxy: {
             target: 'http://127.0.0.1',
@@ -23,6 +24,4 @@ mix.js('resources/js/app.js', 'public/js')
         open: false,
         reloadOnRestart: true,
     })
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .sass('resources/css/app.scss', 'public/css');
