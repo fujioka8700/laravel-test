@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TimeCounterController extends Controller
+class StopWatchController extends Controller
 {
     public function getIndex()
     {
-        return view('timecounter/index');
+        return view('stopwatch/index');
     }
 }
