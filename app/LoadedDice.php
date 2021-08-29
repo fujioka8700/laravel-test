@@ -2,7 +2,7 @@
 
 namespace App;
 
-class LoadedDice
+class LoadedDice implements RollableDice
 {
     public function roll(): int
     {
