@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Faker\Core\Number;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -40,4 +41,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 作成順のクエリスコープ
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param  int $size
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeCreatedLatest($query, $size)
+    {
+        return $query->orderBy('created_at', 'desc')->take($size);
+    }
 }
