@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\StopWatchController;
+use App\Http\Controllers\DiceController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +24,7 @@ Route::get('/', function () {
 Route::get('/boards', [BoardController::class, 'getIndex']);
 
 Route::get('/stopwatch', [StopWatchController::class, 'getIndex']);
+
+Route::get('/dice', [DiceController::class, 'rollDouble']);
+
+Route::get('/user', [UserController::class, 'getIndex']);
