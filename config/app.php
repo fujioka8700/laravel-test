@@ -228,6 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'FacadeClassY' => \App\Facades\FacadeClassY::class,
+        'FacadeClassL' => \App\Facades\FacadeClassL::class,
 
     ],
 
