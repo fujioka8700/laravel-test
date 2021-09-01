@@ -18,6 +18,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // アクセス時にイベントを発行する側
+        'App\Events\Event' => [
+            // テキストを生成&書き込みを行うリスナー側
+            'App\Listeners\MakeTextListener',
+        ],
     ];
 
     /**
