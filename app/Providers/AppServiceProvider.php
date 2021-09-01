@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Dice;
 use App\LoadedDice;
 use App\RollableDice;
+use App\ClassY;
+use App\Libs\ClassL;
 use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
             }
             return new Dice();
         });
+        $this->app->bind(ClassY::class, function(){
+            $ClassY = new ClassY();
+            $ClassY->foo = 'bar';
+            return $ClassY;
+        });
+        $this->app->bind(ClassL::class, ClassL::class);
     }
 
     /**
