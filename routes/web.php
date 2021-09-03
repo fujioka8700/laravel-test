@@ -31,3 +31,5 @@ Route::get('/dice', [DiceController::class, 'rollDouble']);
 Route::get('/user', [UserController::class, 'getIndex']);
 
 Route::get('/sample/events', [SampleController::class, 'events']);
+
+Route::get('/sample/queues', [SampleController::class, 'queues']);
