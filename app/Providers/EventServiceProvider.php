@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\AccessDetection;
+use App\Listeners\MakeTextListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -19,10 +21,13 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         // アクセス時にイベントを発行する側
-        'App\Events\Event' => [
+        'App\Events\AccessDetection' => [
             // テキストを生成&書き込みを行うリスナー側
             'App\Listeners\MakeTextListener',
         ],
+        // AccessDetection::class => [
+        //     MakeTextListener::class,
+        // ],
     ];
 
     /**

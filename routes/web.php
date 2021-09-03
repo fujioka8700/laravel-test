@@ -5,6 +5,7 @@ use App\Http\Controllers\BoardController;
 use App\Http\Controllers\StopWatchController;
 use App\Http\Controllers\DiceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/stopwatch', [StopWatchController::class, 'getIndex']);
 Route::get('/dice', [DiceController::class, 'rollDouble']);
 
 Route::get('/user', [UserController::class, 'getIndex']);
+
+Route::get('/sample/events', [SampleController::class, 'events']);

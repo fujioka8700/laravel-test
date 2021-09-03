@@ -10,18 +10,20 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Event
+class AccessDetection
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $param;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($value)
     {
-        //
+        $this->param = $value;
     }
 
     /**
