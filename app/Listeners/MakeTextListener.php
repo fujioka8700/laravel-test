@@ -20,8 +20,7 @@ class MakeTextListener
 
     /**
      * Handle the event.
-     *
-     * @param  Event  $event
+     * @param AccessDetection $event
      * @return void
      */
     public function handle(AccessDetection $event)

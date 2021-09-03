@@ -30,6 +30,14 @@ Route::get('/dice', [DiceController::class, 'rollDouble']);
 
 Route::get('/user', [UserController::class, 'getIndex']);
 
+// イベント＆リスナを使ってObserverパターンを実装する
 Route::get('/sample/events', [SampleController::class, 'events']);
 
+// キュー投入によるジョブ処理を導入する
 Route::get('/sample/queues', [SampleController::class, 'queues']);
+
+// 通常の同期処理を行う
+Route::get('/sample/queues/none', [SampleController::class, 'queuesNone']);
+
+// 非同期処理を行う
+Route::get('/sample/queues/database', [SampleController::class, 'queuesDatabase']);

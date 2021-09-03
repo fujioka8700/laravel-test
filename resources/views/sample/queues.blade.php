@@ -10,6 +10,9 @@
 
 <body>
     <p>Queues test!!</p>
+    @if (!empty($start))
+    {{ time() - $start }}
+    @endif
 </body>
 
 </html>

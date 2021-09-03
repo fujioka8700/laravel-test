@@ -8,21 +8,27 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Components\FileOperation;
 
-class StoreText implements ShouldQueue
+class GenerateTextFile implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $param;
+    private $file;
+    private $max;
+    private $fp;
 
     /**
      * Create a new job instance.
-     * @param int $value
+     * @param string $file
+     * @param int $max
      * @return void
      */
-    public function __construct($value)
+    public function __construct($file, $max)
     {
-        $this->param = $value;
+        $this->file = $file;
+        $this->max  = $max;
+        $this->fp = new FileOperation();
     }
 
     /**
@@ -32,13 +38,7 @@ class StoreText implements ShouldQueue
      */
     public function handle()
     {
-        // テキストファイルの作成
-        $file = sprintf('%s/%s.txt', storage_path('texts'), date('Q-Ymd-His'));
-        touch($file);
-
         // 書き込み
-        $current = file_get_contents($file);
-        $current .= $this->param;
-        file_put_contents($file, $current);
+        $this->fp->write($this->file, $this->max);
     }
 }
