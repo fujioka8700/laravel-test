@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use App\Events\AccessDetection;
 use App\Http\Components\FileOperation;
 use App\Jobs\GenerateTextFile;
 use App\Jobs\StoreText;
+use App\Mail\SampleNotification;
 
 class SampleController extends Controller
 {
@@ -18,6 +20,18 @@ class SampleController extends Controller
     public function __construct()
     {
         $this->fp = new FileOperation();
+    }
+
+    /**
+     * メールを送信する
+     * @return void
+     */
+    public function SampleNotification()
+    {
+        $name = 'ララベル太郎';
+        $text = 'これからもよろしくお願いします。';
+        $to   = 'iranai7966@yahoo.co.jp';
+        Mail::to($to)->send(new SampleNotification($name, $text));
     }
 
     /**

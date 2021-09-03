@@ -6,6 +6,7 @@ use App\Http\Controllers\StopWatchController;
 use App\Http\Controllers\DiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SampleController;
+use App\Mail\SampleNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,11 @@ Route::get('/sample/queues/none', [SampleController::class, 'queuesNone']);
 
 // 非同期処理を行う
 Route::get('/sample/queues/database', [SampleController::class, 'queuesDatabase']);
+
+// 送信メール本文のプレビュー
+Route::get('/sample/mailable/preview', function() {
+    return new SampleNotification();
+});
+
+// メールを送信
+Route::get('/sample/mailable/send', [SampleController::class, 'SampleNotification']);
