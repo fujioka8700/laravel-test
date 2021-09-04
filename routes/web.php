@@ -7,6 +7,7 @@ use App\Http\Controllers\DiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SampleController;
 use App\Mail\SampleNotification;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,16 @@ Route::get('/sample/mailable/preview', function() {
 
 // メールを送信
 Route::get('/sample/mailable/send', [SampleController::class, 'SampleNotification']);
+
+// Notificationクラスから、メールを送信
+Route::get('/sample', [SampleController::class, 'index']);
+
+// ブラウザ上でHTMLメールをプレビュー
+Route::get('/preview', function () {
+    $user = new User([
+        'name'  => 'Test User',
+        'email' => 'iranai7966@yahoo.co.jp',
+    ]);
+
+    return (new \App\Notifications\SimpleNotification())->toMail($user);
+});

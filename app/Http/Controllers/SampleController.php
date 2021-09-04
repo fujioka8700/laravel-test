@@ -10,6 +10,8 @@ use App\Http\Components\FileOperation;
 use App\Jobs\GenerateTextFile;
 use App\Jobs\StoreText;
 use App\Mail\SampleNotification;
+use App\Models\User;
+use App\Notifications\SimpleNotification;
 
 class SampleController extends Controller
 {
@@ -23,6 +25,22 @@ class SampleController extends Controller
     }
 
     /**
+     * Modelクラスから、メールを送信する
+     * @return void
+     */
+    public function index()
+    {
+        // ユーザーデータを取得したつもり
+        $user = new User([
+            'name'  => 'Test User',
+            'email' => 'iranai7966@yahoo.co.jp',
+        ]);
+
+        // 通知
+        $user->notify(new SimpleNotification());
+    }
+
+    /**
      * メールを送信する
      * @return void
      */
@@ -31,6 +49,7 @@ class SampleController extends Controller
         $name = 'ララベル太郎';
         $text = 'これからもよろしくお願いします。';
         $to   = 'iranai7966@yahoo.co.jp';
+
         Mail::to($to)->send(new SampleNotification($name, $text));
     }
 
